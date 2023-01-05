@@ -1,3 +1,10 @@
+data "archive_file" "python_zip"{
+    type         = "zip"
+    source_dir   = "${path.module}/python/"
+    output_path  = "${path.module}/python/main.zip"
+
+}
+
 resource "aws_iam_role" "lambda_role"{
     name                = fearless_role
     assume_role_policy  = <<EOF
@@ -24,12 +31,6 @@ resource "aws_iam_role_policy_attachment" "lambda_policy"{
 
 }
 
-data "archive_file" "python_zip"{
-    type         = "zip"
-    source_dir   = "${path.module}/python/"
-    output_path  = "${path.module}/python/main.zip"
-
-}
 
 resource "aws_s3_bucket" "lambda_bucket" {
     bucket        = "temitope1_4_2023_bucket"
