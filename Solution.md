@@ -1,6 +1,5 @@
 Project Purple Cow Definition
-	
-In this project we creating a python function that checks the SSL certificate expiration of a website. This application will be deployed using AWS Lambda serverelss and API Gateway for invocation.
+In this project i am creating a python function that checks the SSL certificate expiration of a website. This application will be deployed using AWS Lambda serverelss and API Gateway for invocation.
 
 Prerequisites
 
@@ -13,8 +12,8 @@ Prerequisites
 
 Create Python Function
 
-We begin by creating a python function that makes use of OpenSSL to check the certificate expiration date for a website.
-We then package the funciton in an archive, this is necessary to deploy the function to AWS Lambda. This can be seen in the archive file data block in the main.tf file
+I begin by creating a python function that loads the url into python, making it into an object that OpenSSL can use to pull the ssl certificate, and the get the experiration. It then decodes this byte and adjusts how the date is presented.
+I then package the funciton in an archive, this is necessary to deploy the function to AWS Lambda. This can be seen in the archive file data block in the main.tf file
 Then you must make sure to add the aws provider and archive provider to your provider.tf file. Add your AWS account crendentials to the provider.tf file as well.
 
 Create Lambda Function in Terraform
@@ -35,13 +34,8 @@ terraform plan
 
 terraform apply then enter yes when prompted.
 
-to test your lambda function run: 
+to test your lambda function run:
 
-	curl "$(terraform output -raw base_url)/main"
-
-
+    curl "$(terraform output -raw base_url)/main"
 
 When done input terraform destroy and enter yes when prompted
-
-
-
